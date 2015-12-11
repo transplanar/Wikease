@@ -54,7 +54,7 @@ RSpec.describe WikisController, type: :controller do
 
   describe "GET #new" do
 # REVIEW is it neccesary to have a "returns http success test here?"
-
+# REVIEW why is this spec failing? I am able to create new wikis with no errors
     it "assigns a new wiki as @wiki" do
       get :new, {}, valid_session
       expect(assigns(:wiki)).to be_a_new(Wiki)
