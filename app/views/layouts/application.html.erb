@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Wikease</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,10 +10,15 @@
 <body>
   <!-- TODO Add Bootstrap stuff here -->
   <!-- TODO Ajax top navigation? -->
-  <ul>
-    <li> <%= link_to "Home", welcome_index_path %> </li>
-    <li> <%= link_to "About", welcome_about_path %> </li>
-  </ul>
+  <div class "container">
+    <!-- REVIEW why aren't the pills rendering correctly? Are the pills in the example styled?
+    http://getbootstrap.com/components/#nav-pills -->
+    <!-- <ul class="nav nav-pills"> -->
+    <ul class="nav nav-tabs">
+      <li role="presentation"> <%= link_to "Home", welcome_index_path %> </li>
+      <li role="presentation"> <%= link_to "About", welcome_about_path %> </li>
+    </ul>
+  </div>
 
 <%= yield %>
 
