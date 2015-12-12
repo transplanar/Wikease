@@ -18,12 +18,14 @@
       <ul class="nav nav-tabs">
         <li role="presentation"> <%= link_to "Home", welcome_index_path %> </li>
         <li role="presentation"> <%= link_to "About", welcome_about_path %> </li>
+        <li role="presentation"> <%= link_to "All Users", users_path %> </li>
       </ul>
 
     <!-- REVIEW how do I remove the extra whitespace this makes between top nav and my page content? -->
     <p class="notice"> <%= notice %> </p>
     <p class="alert"> <%= alert %> </p>
 
+    <!-- IDEA allow sign in then return to previous page -->
     <% if user_signed_in? %>
     <!-- TODO Add username attribute, change this line -->
       Signed in as: <strong><%= current_user.email %></strong>

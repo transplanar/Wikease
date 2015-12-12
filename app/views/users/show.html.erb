@@ -1,0 +1,9 @@
+<!-- TODO add username -->
+<h1>Profile for <%= @user.email %></h1>
+
+<h2> Wikis by this user: </h2>
+
+<!-- TODO create partial for user wiki index-->
+<% @user.wikis.each do |wiki| %>
+    <p> <%= link_to wiki.title, wiki_path(wiki) %> </p>
+<% end %>

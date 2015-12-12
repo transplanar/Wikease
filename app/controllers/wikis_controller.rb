@@ -12,6 +12,7 @@ class WikisController < ApplicationController
   def show
   end
 
+# TODO Feature - Allow you to attempt to create a wiki, suspend and prompt for signin, then complete request on sign-in
   # GET /wikis/new
   def new
     @wiki = Wiki.new
@@ -19,12 +20,17 @@ class WikisController < ApplicationController
 
   # GET /wikis/1/edit
   def edit
+    # REVIEW X - is this required in both edit and update?
+    authorize @wiki
   end
 
   # POST /wikis
   # POST /wikis.json
   def create
-    @wiki = Wiki.new(wiki_params)
+    # @wiki = Wiki.new(wiki_params)
+    # REVIEW should this always be current user?
+    #  Or should this receive user value by another method?
+    @wiki = current_user.wikis.new(wiki_params)
 
     respond_to do |format|
       if @wiki.save
@@ -40,6 +46,9 @@ class WikisController < ApplicationController
   # PATCH/PUT /wikis/1
   # PATCH/PUT /wikis/1.json
   def update
+    # REVIEW X - is this required in both edit and update?
+    # authorize @wiki
+
     respond_to do |format|
       if @wiki.update(wiki_params)
         format.html { redirect_to @wiki, notice: 'Wiki was successfully updated.' }
