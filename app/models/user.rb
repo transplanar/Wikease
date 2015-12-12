@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :wikis
+
+  after_initialize :init
+
+  def init
+    self.role = "member"
+  end
 end
