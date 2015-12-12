@@ -3,6 +3,7 @@ class CreateWikis < ActiveRecord::Migration
     create_table :wikis do |t|
       t.string :title
       t.text :body
+      # IDEA refactor :private into better name? (implies others shouldn't see it)
       t.boolean :private
       t.references :user, index: true, foreign_key: true
 

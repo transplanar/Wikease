@@ -1,3 +1,4 @@
+# NOTE Could use "rails g pundit:policy Wiki" instead1
 class WikiPolicy < ApplicationPolicy
   attr_reader :user, :wiki
 
@@ -6,9 +7,8 @@ class WikiPolicy < ApplicationPolicy
     @wiki = wiki
   end
 
-  # REVIEW is this correct? (check based on wiki, not user authorization)
+  # TODO add case for admin and/or higher level roles
   def update?
-    true
+    (not wiki.private) || (@user == wiki.user)
   end
-
 end

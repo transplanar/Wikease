@@ -21,13 +21,16 @@ class WikisController < ApplicationController
   # GET /wikis/1/edit
   def edit
     # REVIEW X - is this required in both edit and update?
-    # authorize @wiki
+    authorize @wiki
   end
 
   # POST /wikis
   # POST /wikis.json
   def create
-    @wiki = Wiki.new(wiki_params)
+    # @wiki = Wiki.new(wiki_params)
+    # REVIEW should this always be current user?
+    #  Or should this receive user value by another method?
+    @wiki = current_user.wikis.new(wiki_params)
 
     respond_to do |format|
       if @wiki.save
@@ -44,7 +47,7 @@ class WikisController < ApplicationController
   # PATCH/PUT /wikis/1.json
   def update
     # REVIEW X - is this required in both edit and update?
-    authorize @wiki
+    # authorize @wiki
 
     respond_to do |format|
       if @wiki.update(wiki_params)
