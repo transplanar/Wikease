@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :wikis
 
-  after_initialize :init
+  enum role: [:member, :vip, :admin]
 
-  def init
-    self.role = "member"
+  after_initialize :set_default_role
+
+  def set_default_role
+    self.role ||= "member"
   end
 end
