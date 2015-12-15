@@ -23,11 +23,7 @@ class ApplicationPolicy
     create?
   end
 
-# REVIEW is this the best way to do this? Doesn't this approach assume
-# any model this app ends up using follows the same permissions?
-# wouldn't it make more sense to put this in wiki_policy?
   def update?
-    # false
     user.present?
   end
 

@@ -12,16 +12,14 @@
     <!-- TODO Add Bootstrap stuff here -->
     <!-- TODO Ajax top navigation? -->
     <div class="container">
-      <!-- REVIEW why aren't the pills rendering correctly? Are the pills in the example styled?
-    http://getbootstrap.com/components/#nav-pills -->
-      <!-- <ul class="nav nav-pills"> -->
-      <ul class="nav nav-tabs">
+      <!-- TODO make active page highlight -->
+      <ul class="nav nav-pills">
         <li role="presentation"> <%= link_to "Home", welcome_index_path %> </li>
         <li role="presentation"> <%= link_to "About", welcome_about_path %> </li>
         <li role="presentation"> <%= link_to "All Users", users_path %> </li>
       </ul>
 
-    <!-- REVIEW how do I remove the extra whitespace this makes between top nav and my page content? -->
+      <!-- TODO style these to remove excess padding/look better -->
     <p class="notice"> <%= notice %> </p>
     <p class="alert"> <%= alert %> </p>
 
