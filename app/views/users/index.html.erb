@@ -1,0 +1,7 @@
+<p> All Users: </p>
+
+<!-- TODO create partial for user index -->
+<!-- <%# @users.each do |user| %> -->
+<% User.all.each do |user| %>
+  <p> <%= link_to user.email, user_path(user) %> </p>
+<% end %>

@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+
+# Set up admin user
+user = User.create!(email: "admin@example.com", password: "password")
+# user.confirmed_at = Time.now
+user.update_attribute(:confirmed_at, Time.now)
+
 #
-# Examples:
+# 20.times do
+#   user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password)
+#   2.times do
+#     # TODO make private default to false (does it do this already?)
+#     user.wikis.create!(title:"title" , body: "body", private: false )
+#   end
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   # create one private wiki
+#   # user.wikis.create
+# end
