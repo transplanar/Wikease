@@ -14,5 +14,5 @@ user.update_attribute(:confirmed_at, Time.now)
   end
 
   # create one private wiki
-  user.wikis.create
+  # user.wikis.create
 end
