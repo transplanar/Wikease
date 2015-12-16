@@ -1,27 +1,14 @@
 Rails.application.routes.draw do
+  get 'charges/create'
+
   devise_for :users
 
   resources :users, only: [:show, :index]
+  # TODO cleanup extraneous paths
   resources :wikis
-  # resources :welcome, only: [:index, :about]
+  resources :charges, only: [:new, :create]
 
   root 'welcome#index'
-
-  # get 'users/new'
-
-  # get 'users/show'
-
-  # get 'users/index'
-
-  # get 'user/new'
-
-  # get 'user/index'
-
-  # get 'user/show'
-
-  # get 'user/create'
-
-  # get 'user/destroy'
 
   get 'welcome/index'
 
