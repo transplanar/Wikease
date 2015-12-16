@@ -9,6 +9,7 @@ class WikisController < ApplicationController
   # GET /wikis/1
   # GET /wikis/1.json
   def show
+    authorize @wiki
   end
 
 # TODO Feature - Allow you to attempt to create a wiki, suspend and prompt for signin, then complete request on sign-in
@@ -57,6 +58,7 @@ class WikisController < ApplicationController
   # DELETE /wikis/1
   # DELETE /wikis/1.json
   def destroy
+    authorize @wiki
     @wiki.destroy
     respond_to do |format|
       format.html { redirect_to wikis_url, notice: 'Wiki was successfully destroyed.' }

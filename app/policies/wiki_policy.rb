@@ -4,4 +4,12 @@ class WikiPolicy < ApplicationPolicy
   def update?
     (not record.private) || (user == record.user)
   end
+
+  def index?
+    update?
+  end
+
+  def show?
+    update?
+  end
 end

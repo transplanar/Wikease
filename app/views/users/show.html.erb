@@ -5,5 +5,8 @@
 
 <!-- TODO create partial for user wiki index-->
 <% @user.wikis.each do |wiki| %>
-    <p> <%= link_to wiki.title, wiki_path(wiki) %> </p>
+<!-- REVIEW cleaner way to do this? -->
+    <% if !wiki.private || current_user.admin? || wiki.user == current_user %>
+      <p> <%= link_to wiki.title, wiki_path(wiki) %> </p>
+    <% end %>
 <% end %>
