@@ -10,3 +10,11 @@
       <p> <%= link_to wiki.title, wiki_path(wiki) %> </p>
     <% end %>
 <% end %>
+
+<% if current_user.role == 'member' %>
+  <!-- REVIEW is there a way to have this show up in the user edit view? -->
+  <%= link_to "Upgrade to Premium", new_charge_path() %>
+<% elsif current_user.role == 'vip' %>
+  <!-- REVIEW redirect to edit path? Change role without using stripe? -->
+  <%= link_to "Downgrade to member", edit_charge_path() %>
+<% end %>

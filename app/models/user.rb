@@ -15,4 +15,18 @@ class User < ActiveRecord::Base
   def set_default_role
     self.role ||= "member"
   end
+
+  # REVIEW is this correct?
+  def upgrade_role
+    # REVIEW better way to increment? Is this sufficient?
+    # self.role = 'vip'
+    self.vip!
+
+    # flash[:notice] = "#{self.email} account upgraded to #{current_user.role}."
+  end
+
+  def downgrade_role
+    # self.role = 'memeber'
+    self.member!
+  end
 end
