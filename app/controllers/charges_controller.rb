@@ -21,6 +21,9 @@ class ChargesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  # def update
+  # end
+
   def create
     # customer = Stripe::Customer.create(
     #   email: current_user.email,
