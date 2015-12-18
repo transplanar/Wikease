@@ -3,8 +3,6 @@ require 'amount'
 
 class ChargesController < ApplicationController
   def new
-    # Rails.configuration.stripe = {
-
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Premium Membership - #{current_user.email}",
@@ -49,4 +47,3 @@ class ChargesController < ApplicationController
     end
 
   end
-# end
