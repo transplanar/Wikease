@@ -10,7 +10,6 @@ user = User.create!(email: "member2@example.com", password: "password")
 user.update_attribute(:confirmed_at, Time.now)
 
 20.times do
-  # user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password)
   User.create!(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 

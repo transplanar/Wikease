@@ -16,18 +16,6 @@ class ChargesController < ApplicationController
     # TODO change Stripe account to reflect downgrade
     current_user.downgrade_role
 
-# TODO DRY this
-    # customer = Stripe::Customer.create(
-    #   email: current_user.email,
-    #   card: params[:stripeToken]
-    # )
-    #
-    # charge = Stripe::Charge.create(
-    #   customer: customer.id,
-    #   amount: Amount.default * -1,
-    #   description: "Premium Membership - #{current_user.email}",
-    #   currency: 'usd' )
-
     flash[:notice] = "#{current_user.email} account downgraded to #{current_user.role}."
     redirect_to user_path(current_user)
   end
