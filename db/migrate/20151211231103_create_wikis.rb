@@ -3,8 +3,7 @@ class CreateWikis < ActiveRecord::Migration
     create_table :wikis do |t|
       t.string :title
       t.text :body
-      # IDEA refactor :private into better name? (implies others shouldn't see it)
-      # TODO set default to false
+      # REVIEW is this the best way to make this value default?
       t.boolean :private, default: false
       t.references :user, index: true, foreign_key: true
 
