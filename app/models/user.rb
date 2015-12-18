@@ -17,16 +17,17 @@ class User < ActiveRecord::Base
   end
 
   # REVIEW is this correct?
-  def upgrade_role
-    # REVIEW better way to increment? Is this sufficient?
-    # self.role = 'vip'
-    self.vip!
-
-    # flash[:notice] = "#{self.email} account upgraded to #{current_user.role}."
-  end
+  # def upgrade_role
+  #   # REVIEW better way to increment? Is this sufficient?
+  #   # self.role = 'vip'
+  #   self.vip!
+  #
+  #   # flash[:notice] = "#{self.email} account upgraded to #{current_user.role}."
+  # end
 
   def downgrade_role
     # self.role = 'memeber'
     self.member!
+    wikis.update_all(private: false)
   end
 end
