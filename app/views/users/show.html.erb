@@ -2,7 +2,7 @@
 <h2>Profile for <%= @user.email %></h2>
 <small> <%= @user.role  %> user </small>
 
-<h2> Wikis by this user: <%= @user.wikis.count %></h2> 
+<h2> Wikis by this user: <%= @user.wikis.count %></h2>
 
 <!-- TODO create partial for user wiki index-->
 <% @user.wikis.each do |wiki| %>

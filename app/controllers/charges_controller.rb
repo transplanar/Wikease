@@ -7,14 +7,27 @@ class ChargesController < ApplicationController
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Premium Membership - #{current_user.email}",
       # REVIEW why doesn't this work?
-      # amount: Amount.default
-      amount: 10_00
+      amount: Amount.default
+      # amount: 10_00
     }
   end
 
   def edit
     # TODO change Stripe account to reflect downgrade
     current_user.downgrade_role
+
+# TODO DRY this
+    # customer = Stripe::Customer.create(
+    #   email: current_user.email,
+    #   card: params[:stripeToken]
+    # )
+    #
+    # charge = Stripe::Charge.create(
+    #   customer: customer.id,
+    #   amount: Amount.default * -1,
+    #   description: "Premium Membership - #{current_user.email}",
+    #   currency: 'usd' )
+
     flash[:notice] = "#{current_user.email} account downgraded to #{current_user.role}."
     redirect_to user_path(current_user)
   end
@@ -22,7 +35,7 @@ class ChargesController < ApplicationController
   def create
     customer = Stripe::Customer.create(
       email: current_user.email,
-      card: [params[:stripeToken]]
+      card: params[:stripeToken]
     )
 
     # TODO create Amount class

@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:users) {User.all}
+
+  describe 'seeding' do
+    it 'should generate 23 user accounts' do
+      expect(users.count).to eq(23)
+    end
+  end
+
   describe 'attributes' do
     let(:user) { User.create!(email: 'test@user.com', password: 'loljkthxbai') }
 
