@@ -16,8 +16,8 @@ end
 
 User.all.each do |user|
   2.times do
-    # TODO make private default to false (does it do this already?)
-    user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: false )
+    # user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: false )
+    user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph)
     # user.save!
   end
 
