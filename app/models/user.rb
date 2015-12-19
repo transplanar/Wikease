@@ -16,26 +16,8 @@ class User < ActiveRecord::Base
     self.role ||= "member"
   end
 
-  # REVIEW is this correct?
-  # def upgrade_role
-  #   # REVIEW better way to increment? Is this sufficient?
-  #   # self.role = 'vip'
-  #   self.vip!
-  #
-  #   # flash[:notice] = "#{self.email} account upgraded to #{current_user.role}."
-  # end
-
   def downgrade_role
-    # self.role = 'memeber'
     self.member!
-<<<<<<< HEAD
     wikis.update_all(private: false)
-=======
-
-    # XXX save needed here?
-    self.wikis.each do |wiki|
-      wiki.private = false
-    end
->>>>>>> 8227425b248546f22376116fb39b5bdb00523a5b
   end
 end
