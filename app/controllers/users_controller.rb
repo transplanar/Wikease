@@ -12,4 +12,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def downgrade
+    # TODO change Stripe account to reflect downgrade
+    current_user.downgrade_role
+
+    flash[:notice] = "#{current_user.email} account downgraded to #{current_user.role}."
+    redirect_to user_path(current_user)
+  end
 end

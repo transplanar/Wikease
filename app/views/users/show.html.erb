@@ -20,5 +20,5 @@
   <!-- REVIEW redirect to edit path? Change role without using stripe? -->
   <!-- <%# link_to "Downgrade to member", edit_charge_path() %> -->
   <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
-  <%= link_to "Downgrade to member", edit_charge_path, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
+  <%= link_to "Downgrade to member", :downgrade_user, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
 <% end %>
