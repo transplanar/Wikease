@@ -28,10 +28,7 @@
     <div class="field">
       <%= f.label :private %> <%= f.check_box :private %>
     </div>
-  <%# else %>
-    <!-- REVIEW better way to make this default? -->
-    <%# f.hidden_field :private, value: false %>
-  <%# end %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
