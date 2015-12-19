@@ -24,8 +24,8 @@ User.all.each do |user|
 end
 
 User.last(5).each do |user|
-  user.update_attribute(:role, 'vip')
-  # user.vip!
+  user.update_attribute(:role, 'premium')
+  # user.premium!
   user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: true )
   user.save!
 end
