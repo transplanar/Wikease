@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :wikis
 
-  enum role: [:member, :vip, :admin]
+  enum role: [:member, :premium, :admin]
 
   after_initialize :set_default_role
 
