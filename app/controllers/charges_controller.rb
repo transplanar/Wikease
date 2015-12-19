@@ -10,14 +10,6 @@ class ChargesController < ApplicationController
     }
   end
 
-  def edit
-    # TODO change Stripe account to reflect downgrade
-    current_user.downgrade_role
-
-    flash[:notice] = "#{current_user.email} account downgraded to #{current_user.role}."
-    redirect_to user_path(current_user)
-  end
-
   def create
     customer = Stripe::Customer.create(
       email: current_user.email,
