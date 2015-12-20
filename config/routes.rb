@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :collaborations
   get 'charges/create'
 
   devise_for :users
