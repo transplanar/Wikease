@@ -26,6 +26,15 @@
     <div class="field">
       <%= f.label :private %> <%= f.check_box :private %>
     </div>
+
+    <% if @wiki.persisted %>
+      <div class="field">
+        <%= f.label :collaborators %>
+        <%= f.text_field :collaborators,
+                          class: 'form-control',
+                          placeholder: "Enter collaborators (separated by commas)",
+      </div>
+    <% end %>
   <% end %>
 
   <div class="actions">
