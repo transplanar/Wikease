@@ -17,9 +17,8 @@ end
 
 User.all.each do |user|
   2.times do
-    # user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: false )
     user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph)
-    # user.save!
+    user.save!
   end
 
   # user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: true )
