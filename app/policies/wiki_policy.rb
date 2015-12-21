@@ -2,6 +2,7 @@
 class WikiPolicy < ApplicationPolicy
   # TODO add case for admin and/or higher level roles
   def update?
+    # REVIEW why is this broken?
     (not record.private) || (user == record.user)
   end
 

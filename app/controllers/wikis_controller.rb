@@ -45,6 +45,16 @@ class WikisController < ApplicationController
   def update
     authorize @wiki
 
+    # XXX does this work?
+    # @users << params[:collaborators]
+
+    # Parse collaborators
+    collaborators = params[:collaborators]
+
+    collaborators.each do |user|
+      Collaboration.create(wiki: @wiki, collaborator: user)
+    end
+
     respond_to do |format|
       if @wiki.update(wiki_params)
         format.html { redirect_to @wiki, notice: 'Wiki was successfully updated.' }
