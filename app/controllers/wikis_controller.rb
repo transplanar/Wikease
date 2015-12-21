@@ -31,7 +31,7 @@ class WikisController < ApplicationController
 
     respond_to do |format|
       if @wiki.save
-        format.html { redirect_to @wiki, notice: 'Wiki was successfully created.' }
+        format.html { redirect_to @wiki}
         format.json { render :show, status: :created, location: @wiki }
       else
         format.html { render :new }
@@ -49,15 +49,23 @@ class WikisController < ApplicationController
     # @users << params[:collaborators]
 
     # Parse collaborators
-    collaborators = params[:collaborators]
+    collaborators = User.where(params[:collaborators])
+    # collaborators = params[:collaborators] == 1)
 
+    flash[:notice] = "Collaborators = #{collaborators}"
+
+
+    # REVIEW Fix this to store new collaborators
     collaborators.each do |user|
-      Collaboration.create(wiki: @wiki, collaborator: user)
+      # Collaboration.create(wiki: @wiki, collaborator: user)
+      Collaboration.create(wiki: @wiki, user: user)
     end
+
 
     respond_to do |format|
       if @wiki.update(wiki_params)
-        format.html { redirect_to @wiki, notice: 'Wiki was successfully updated.' }
+        # @wiki.collaborators = Collaborator.update_collaborators(params[:wiki][:collaborators])
+        format.html { redirect_to @wiki}
         format.json { render :show, status: :ok, location: @wiki }
       else
         format.html { render :edit }
@@ -86,5 +94,6 @@ class WikisController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
       params.require(:wiki).permit(:title, :body, :private, :user_id)
+      # params.require(:wiki).permit(:title, :body, :private, :user_id, :collaborators)
     end
 end

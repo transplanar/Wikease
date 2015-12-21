@@ -22,5 +22,14 @@
   <%= @wiki.user.email %>
 </p>
 
+<strong>collaborators:</strong>
+<p>
+  <% if !@wiki.collaborators.any? %>
+    <% @wiki.collaborators.each do |c| %>
+      <p> <%= c.email %> </p>
+    <% end %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_wiki_path(@wiki) %> |
 <%= link_to 'Back', wikis_path %>

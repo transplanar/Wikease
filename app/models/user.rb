@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
 
   # has_many :wikis
   has_many :collaborations
-  has_many :wikis, through: :collaborations
-  has_many :collaborators, through: :collaborations
+  # has_many :wikis, through: :collaborations
+  has_many :wikis
+  # has_many :collaborators, through: :collaborations
 
   enum role: [:member, :premium, :admin]
 
