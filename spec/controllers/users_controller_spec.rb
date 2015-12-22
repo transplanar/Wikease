@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
     email: Faker::Internet.email,
     password: Faker::Internet.password)}
 
-  # REVIEW why don't these specs work?
+  # REVIEW (mid) why don't these specs work?
   describe "GET #show" do
     it "returns http success" do
       get :show

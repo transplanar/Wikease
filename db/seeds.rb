@@ -10,6 +10,8 @@ user = User.create!(email: "member2@example.com", password: "password")
 user.update_attribute(:confirmed_at, Time.now)
 
 20.times do
+  # TODO (LOW) randomize create times?
+  # REVIEW (low) use seed data on heroku deployed site?
   User.create!(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 
