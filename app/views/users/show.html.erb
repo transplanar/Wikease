@@ -1,23 +1,37 @@
 <!-- TODO add username -->
-<h2>Profile for <%= @user.email %></h2>
-<small> <%= @user.role  %> user </small>
+<!-- <h2><%# @user.email %></h2> <small> <%# @user.role  %></small> -->
+<h2><%= @user.email %></h2> <small> <%= @user.role  %></small>
 
-<h2> Wikis by this user: <%= @user.wikis.count %></h2>
 
-<!-- TODO create partial for user wiki index-->
-<% @user.wikis.each do |wiki| %>
-    <!-- TODO restore hide of private wikis -->
-    <!-- <%# if !wiki.private || current_user.admin? || wiki.user == current_user %> -->
-      <p> <%= link_to wiki.title, wiki_path(wiki) %> </p>
-    <!-- <%# end %> -->
-<% end %>
+
+<row>
+  <div class="col-md-6">
+    <h3> <%= @user.wikis.count %> Wikis</h3>
+    <!-- TODO create partial for user wiki index-->
+    <!-- <div class="col-md-6"> -->
+
+      <ul>
+        <% @user.wikis.each do |wiki| %>
+
+          <li> <%= link_to wiki.title, wiki_path(wiki) %> </li>
+      <% end %>
+    </ul>
+
+          <!-- TODO restore hide of private wikis -->
+          <!-- <%# if !wiki.private || current_user.admin? || wiki.user == current_user %> -->
+          <!-- <%# end %> -->
+    <!-- </div> -->
+  </div>
+</row>
 
 <!-- TODO Move this somewhere better. Do not show on other user profiles -->
-<% if current_user.role == 'member' %>
-  <!-- TODO  have this show in user edit view as well-->
-  <%= link_to "Upgrade to Premium", new_charge_path() %>
-<% elsif current_user.role == 'vip' %>
-  <!-- TODO check that this is up-to-date with non-RESTful method (on story-10 branch?) -->
-  <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
-  <%= link_to "Downgrade to member", edit_charge_path, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
+<% if current_user == @user %>
+  <% if current_user.role == 'member' %>
+    <!-- TODO  have this show in user edit view as well-->
+    <%= link_to "Upgrade to Premium", new_charge_path() %>
+  <% elsif current_user.role == 'vip' %>
+    <!-- TODO check that this is up-to-date with non-RESTful method (on story-10 branch?) -->
+    <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
+    <%= link_to "Downgrade to member", edit_charge_path, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
+  <% end %>
 <% end %>

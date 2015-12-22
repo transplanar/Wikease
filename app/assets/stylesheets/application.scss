@@ -16,3 +16,10 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// TODO tweak mouse_over look
+#new_wiki_button{
+  background-color: #83ff8c;
+  margin-bottom: 1em;
+  border-radius: 15px;
+}
