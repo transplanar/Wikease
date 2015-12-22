@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Wikis</h1>
+<h1>Wikis</h1>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -10,19 +10,30 @@
   </thead>
 
   <tbody>
-    <% @wikis.each do |wiki| %>
+    <%# @wikis.each do |wiki| %>
       <tr>
-        <td><%= link_to wiki.title, wiki_path(wiki) %></td>
-        <td><%= link_to wiki.user.email, user_path(wiki.user) %></td>
+        <td><%# link_to wiki.title, wiki_path(wiki) %></td>
+        <td><%# link_to wiki.user.email, user_path(wiki.user) %></td>-->
 
-        <!-- TODO allow edit and destroy from index for authorized users -->
-        <!-- <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td> -->
-        <!-- <td><%= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+      <!-- </tr> -->
+    <!-- <%# end %> -->
+  <!-- </tbody> -->
+<!-- </table> -->
+
+<ul>
+
+<% @wikis.each do |wiki| %>
+  <!-- <div class="col-md-6"> -->
+    <li>
+      <%= link_to wiki.title.truncate(50), wiki_path(wiki) %>
+      <div class="pull-right">
+        <%= link_to wiki.user.email, user_path(wiki.user) %>
+      </div>
+    </li>
+  <!-- </div> -->
+<% end %>
+</ul>
+
 
 <br>
-
-<%= link_to 'New Wiki', new_wiki_path %>
