@@ -1,7 +1,18 @@
-<p> All Users: </p>
-
+<strong> All Users: </strong>
 <!-- TODO create partial for user index -->
 <!-- <%# @users.each do |user| %> -->
+
+<!-- TODO adjust positioning of joined date-->
+<div class="pull-right"> <strong>Joined:</strong> </div>
+
 <% User.all.each do |user| %>
-  <p> <%= link_to user.email, user_path(user) %> </p>
+  <div class="col-md-6">
+    <%= link_to user.email, user_path(user) %>
+
+    <div class="pull-right">
+      <%= user.created_at.strftime("%B %d, %Y") %>
+    </div>
+  </div>
+
+  <!-- TODO align "joined" to right side -->
 <% end %>

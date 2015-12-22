@@ -6,9 +6,7 @@ class ChargesController < ApplicationController
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Premium Membership - #{current_user.email}",
-      # REVIEW why doesn't this work?
       amount: Amount.default
-      # amount: 10_00
     }
   end
 

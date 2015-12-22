@@ -20,8 +20,6 @@
     <%= f.text_area :body %>
   </div>
 
-  <!-- <%# if @wiki.user == current_user || @wiki.user.nil? %> -->
-  <!-- REVIEW is there a way to do numerical comparison (role >= vip)? -->
   <!-- XXX check to see if this works in both views -->
   <% if current_user.role == 'vip' || current_user.role == 'admin' %>
     <!-- TODO fix styling to make checkbox align better -->
