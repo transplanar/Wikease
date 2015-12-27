@@ -25,13 +25,12 @@
 </row>
 
 <!-- TODO Move this somewhere better. Do not show on other user profiles -->
-<% if current_user == @user %>
-  <% if current_user.role == 'member' %>
-    <!-- TODO  have this show in user edit view as well-->
-    <%= link_to "Upgrade to Premium", new_charge_path() %>
-  <% elsif current_user.role == 'vip' %>
-    <!-- TODO check that this is up-to-date with non-RESTful method (on story-10 branch?) -->
-    <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
-    <%= link_to "Downgrade to member", edit_charge_path, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
-  <% end %>
+<% if current_user.role == 'member' %>
+  <!-- REVIEW is there a way to have this show up in the user edit view? -->
+  <%= link_to "Upgrade to Premium", new_charge_path() %>
+<% elsif current_user.role == 'premium' %>
+  <!-- REVIEW redirect to edit path? Change role without using stripe? -->
+  <!-- <%# link_to "Downgrade to member", edit_charge_path() %> -->
+  <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
+  <%= link_to "Downgrade to member", :downgrade_user, confirm: "Downgrading will render all private wikis public. Continue anyway?" %>
 <% end %>

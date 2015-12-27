@@ -5,7 +5,7 @@ class Wiki < ActiveRecord::Base
   has_many :collaborations
   has_many :users, through: :collaborations
   # has_many :users, through: :collaborations
-  # has_many :collaborators, through: :collaborations, source: 
+  # has_many :collaborators, through: :collaborations, source:
 
   def collaboration_for(user)
     collaborations.find_by(user: user)
