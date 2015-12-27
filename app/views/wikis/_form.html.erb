@@ -28,18 +28,18 @@
     </div>
 
 
-    <% if @wiki.persisted?  %>
-      <%= f.label :collaborators %>
+    <!-- <% if @wiki.persisted?  %>
+      <%# f.label :collaborators %>
       <% User.all.each do |user|  %>
-        <p> <%= user.email %>
-          <%= check_box_tag(:collaborator)  %>
+        <p> <%# user.email %>
+          <%# check_box_tag(:collaborator)  %>
         </p>
         <% end %>
-    <% end %>
+    <% end %> -->
     <%# if @wiki.persisted? %>
       <!-- <div class="field">
-        <%= f.label :collaborators %>
-        <%= f.text_field :collaborators,
+        <%# f.label :collaborators %>
+        <%# f.text_field :collaborators,
                           class: 'form-control',
                           placeholder: "Enter collaborators (separated by commas)" %>
       </div> -->
