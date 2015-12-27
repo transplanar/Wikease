@@ -18,12 +18,14 @@
 
 <strong>collaborators:</strong>
 <p>
-  <% if !@wiki.collaborators.any? %>
-    <% @wiki.collaborators.each do |c| %>
-      <p> <%= c.email %> </p>
+  <% if @wiki.users.any? %>
+    <% @wiki.users.each do |u| %>
+      <p> <%= u.email %> </p>
     <% end %>
   <% end %>
 </p>
+
+<%= link_to "Manage collaborators", wiki_collaborations_path(@wiki), class: "btn btn-success" %>
 
 <%= link_to 'Edit', edit_wiki_path(@wiki) %> |
 <%= link_to 'Back', wikis_path %>

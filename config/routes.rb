@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :collaborations
+
   get 'charges/create'
 
   devise_for :users
@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
 
   # TODO cleanup extraneous paths
-  resources :wikis
+  resources :wikis do
+    resources :collaborations, only: [:index, :create, :destroy]
+  end
   # resources :charges, only: [:new, :create]
   resources :charges, only: [:new, :create, :edit]
 

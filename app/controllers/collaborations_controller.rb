@@ -1,10 +1,12 @@
 class CollaborationsController < ApplicationController
-  before_action :set_collaboration, only: [:show, :edit, :update, :destroy]
+  before_action :set_collaboration, only: [:destroy]
+  before_action :set_wiki
 
   # GET /collaborations
   # GET /collaborations.json
   def index
-    @collaborations = Collaboration.all
+    #@collaborations = Collaboration.all
+    @users = User.all
   end
 
   # GET /collaborations/1
@@ -24,14 +26,14 @@ class CollaborationsController < ApplicationController
   # POST /collaborations
   # POST /collaborations.json
   def create
-    @collaboration = Collaboration.new(collaboration_params)
+    @collaboration = @wiki.collaborations.new(user_id: params[:user_id])
 
     respond_to do |format|
       if @collaboration.save
-        format.html { redirect_to @collaboration, notice: 'Collaboration was successfully created.' }
+        format.html { redirect_to wiki_collaborations_path(@wiki), notice: 'Collaboration was successfully created.' }
         format.json { render :show, status: :created, location: @collaboration }
       else
-        format.html { render :new }
+        format.html { redirect_to wiki_collaborations_path(@wiki) }
         format.json { render json: @collaboration.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +58,7 @@ class CollaborationsController < ApplicationController
   def destroy
     @collaboration.destroy
     respond_to do |format|
-      format.html { redirect_to collaborations_url, notice: 'Collaboration was successfully destroyed.' }
+      format.html { redirect_to wiki_collaborations_path(@wiki), notice: 'Collaboration was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +69,9 @@ class CollaborationsController < ApplicationController
       @collaboration = Collaboration.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def collaboration_params
-      params[:collaboration]
+    def set_wiki
+      @wiki = Wiki.find(params[:wiki_id])
     end
+
+
 end
