@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- TODO active/inactive states for all links http://getbootstrap.com/components/#disabled-and-active-states -->
     <!-- TODO Set up favicon? -->
     <title>Wikease</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -10,14 +11,15 @@
   </head>
   <body>
     <!-- TODO Ajax top navigation? -->
+    <!-- TODO add breadcrumbs? http://getbootstrap.com/components/#breadcrumbs -->
     <div class="container">
       <!-- TODO make active page highlight -->
       <ul class="nav nav-pills">
-        <li role="presentation"> <%= link_to "Home", welcome_index_path %> </li>
-        <li role="presentation"> <%= link_to "About", welcome_about_path %> </li>
-        <li role="presentation"> <%= link_to "Users", users_path %> </li>
-        <li role="presentation"> <%= link_to "Wikis", wikis_path %> </li>
-        <li role="presentation" class="pull-right" id="new_wiki_button"> <%= link_to 'Create New Wiki', new_wiki_path %> </li>
+        <li role="presentation"  class="blue-pill"> <%= link_to "Home", welcome_index_path %> </li>
+        <li role="presentation"  class="blue-pill"> <%= link_to "About", welcome_about_path %> </li>
+        <li role="presentation"  class="blue-pill"> <%= link_to "Users", users_path %> </li>
+        <li role="presentation"  class="blue-pill"> <%= link_to "Wikis", wikis_path %> </li>
+        <li role="presentation"  class="pull-right new-wiki-button" id="new_wiki_button"> <%= link_to 'Create New Wiki', new_wiki_path %> </li>
         <!-- TODO upgrade to premium here? -->
       </ul>
 
@@ -39,8 +41,6 @@
       <!-- TODO style these to remove excess padding/look better -->
     <p class="notice"> <%= notice %> </p>
     <p class="alert"> <%= alert %> </p>
-
-
 
     <%= yield %>
   </div>
