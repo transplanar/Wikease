@@ -10,14 +10,6 @@ class ChargesController < ApplicationController
     }
   end
 
-  def edit
-    # TODO change Stripe account to reflect downgrade
-    current_user.downgrade_role
-
-    flash[:notice] = "#{current_user.email} account downgraded to #{current_user.role}."
-    redirect_to user_path(current_user)
-  end
-
   def create
     customer = Stripe::Customer.create(
       email: current_user.email,
@@ -31,11 +23,9 @@ class ChargesController < ApplicationController
       description: "Premium Membership - #{current_user.email}",
       currency: 'usd' )
 
-    # flash[:notice] = "Thank you for your purchase, #{current_user.email}."
-    # TODO change this to something better?
-    # XXX testing - adding user upgrade here
+    flash[:notice] = "Thank you for your purchase, #{current_user.email}."
 
-    current_user.vip!
+    current_user.premium!
 
     flash[:notice] = "#{current_user.email} account upgraded to #{current_user.role}."
     redirect_to current_user

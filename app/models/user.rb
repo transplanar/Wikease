@@ -6,14 +6,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  # has_many :wikis
+  has_many :collaborations
+  # has_many :wikis, through: :collaborations
   has_many :wikis
+  # has_many :collaborators, through: :collaborations
 
-  enum role: [:member, :vip, :admin]
+  enum role: [:member, :premium, :admin]
 
   after_initialize :set_default_role
 
   def set_default_role
-    self.role ||= "member"
+    self.role ||= 'member'
   end
 
   def downgrade_role

@@ -21,12 +21,30 @@
   </div>
 
   <!-- XXX check to see if this works in both views -->
-  <% if current_user.role == 'vip' || current_user.role == 'admin' %>
+  <!-- <%# if current_user.role == 'premium' || current_user.role == 'admin' %> -->
     <!-- TODO fix styling to make checkbox align better -->
     <div class="field">
       <%= f.label :private %> <%= f.check_box :private %>
     </div>
-  <% end %>
+
+
+    <!-- <% if @wiki.persisted?  %>
+      <%# f.label :collaborators %>
+      <% User.all.each do |user|  %>
+        <p> <%# user.email %>
+          <%# check_box_tag(:collaborator)  %>
+        </p>
+        <% end %>
+    <% end %> -->
+    <%# if @wiki.persisted? %>
+      <!-- <div class="field">
+        <%# f.label :collaborators %>
+        <%# f.text_field :collaborators,
+                          class: 'form-control',
+                          placeholder: "Enter collaborators (separated by commas)" %>
+      </div> -->
+    <%# end %>
+  <%# end %>
 
   <div class="actions">
     <%= f.submit %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Collaborations</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+        <% if @wiki.users.include?(user) %>
+          <% collaboration =  @wiki.collaboration_for(user) %>
+          <%= link_to 'Remove as Collaborator', wiki_collaboration_path(@wiki, collaboration), method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "Add as Collaborator", wiki_collaborations_path(@wiki, user_id: user.id), method: :post, class: "btn btn-success" %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Collaboration', new_collaboration_path %>

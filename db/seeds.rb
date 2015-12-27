@@ -17,17 +17,16 @@ end
 
 User.all.each do |user|
   2.times do
-    # user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: false )
     user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph)
-    # user.save!
+    user.save!
   end
 
   # user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: true )
 end
 
 User.last(5).each do |user|
-  user.update_attribute(:role, 'vip')
-  # user.vip!
+  user.update_attribute(:role, 'premium')
+  # user.premium!
   user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, private: true )
   user.save!
 end
