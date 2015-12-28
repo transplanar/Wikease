@@ -22,8 +22,6 @@ class CollaborationsController < ApplicationController
 
     respond_to do |format|
       if @collaboration.save
-        # REVIEW why aren't confirmation messages working right here?
-        # REVIEW why is the confirmation message displaying twice?
         format.html { redirect_to wiki_collaborations_path(@wiki), notice: 'Collaboration was successfully created.' }
         # format.html { redirect_to wiki_collaborations_path(@wiki), flash[:notice] = "Collaboration was successfully created." }
         # format.html { redirect_to wiki_collaborations_path(@wiki), flash[:notice] = "#{user.email.to_s} is now collaborating on #{@wiki.title}" }
@@ -62,6 +60,6 @@ class CollaborationsController < ApplicationController
     end
 
     def set_wiki
-      @wiki = Wiki.find(params[:wiki_id])
+      @wiki = current_user.wikis.find(params[:wiki_id])
     end
 end

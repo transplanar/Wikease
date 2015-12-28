@@ -2,22 +2,12 @@
 class WikiPolicy < ApplicationPolicy
   # TODO add case for admin and/or higher level roles
   def update?
-    # REVIEW 1 - what is the purpose of this VS using resolve?
-    # (not record.private) || (user == record.user)
     (not record.private) || (user == record.user) || (user.role == 'admin') || (record.users.include?(user))
   end
-  #
-  # def index?
-  #   update?
-  # end
-  #
+
   def show?
     update?
   end
-  #
-  # def destroy?
-  #   update?
-  # end
 
   def destroy?
     update?
@@ -31,7 +21,6 @@ class WikiPolicy < ApplicationPolicy
      @scope = scope
    end
 
-  #  REVIEW what is the purpose of this? This only applies to the index view?
    def resolve
      wikis = []
      if user.role == 'admin'

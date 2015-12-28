@@ -41,7 +41,6 @@
   <!-- TODO change to give options (delete private wikis, convert private wikis, etc) -->
   <!-- REVIEW why isn't the confirmation message showing up? -->
   <!-- data: { confirm: "Are you sure?" } -->
-  <!-- <%# link_to "Downgrade to member", :downgrade_user, confirm: "Downgrading will render all private wikis public. Continue anyway?", class: "btn btn-warning" %> -->
   <%= link_to "Downgrade to member", :downgrade_user, data: {confirm: "Downgrading will render all private wikis public. Continue anyway?"}, class: "btn btn-warning" %>
 <% end %>
 

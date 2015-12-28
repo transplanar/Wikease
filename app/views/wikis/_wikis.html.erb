@@ -1,0 +1,6 @@
+<% @wikis.each do |wiki| %>
+      <tr>
+        <td><%= link_to wiki.title.truncate(50), wiki_path(wiki) %></td>
+        <td> <%= link_to wiki.user.email, user_path(wiki.user) %></td>
+      </tr>
+    <% end %>

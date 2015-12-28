@@ -1,27 +1,12 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_tree .
  *= require_self
  */
-
-// REVIEW overide/extend CSS classes?
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 .container{
-  // font: Verdana, sans-serif;
-  // font: Arial, sans-serif;
   font-family: fantasy, sans-serif;
 }
 
@@ -33,25 +18,26 @@
   background-color: #83ff8c;
   margin-bottom: 1em;
   border-radius: 10px;
+
+  a{
+    &:hover {
+      background-color: #008040;
+      border-radius: 10px;
+      color: yellow;
+    }
+  }
 }
 
-#new_wiki_button a:hover{
-  background-color: #008040;
+li.blue-pill {
   border-radius: 10px;
-  color: yellow;
-}
-
-.blue-pill,
-.blue-pill a:hover{
-  border-radius: 10px;
-}
-
-.blue-pill{
   background-color: #e5fdff;
-}
 
-li.blue-pill a:hover {
-  background-color: #008d99
+  a{
+    &:hover{
+      background-color: #008d99
+
+    }
+  }
 }
 
 .index-table-header{
@@ -60,7 +46,13 @@ li.blue-pill a:hover {
 }
 
 .index-table-header-container{
-  padding-left: 10px;
-  text-indent: 2em;
   border-top: none;
 }
+
+.bump-down {
+  margin-bottom: 25px;
+}
+
+// #table-header{
+//   border-top: 0px none !important;
+// }

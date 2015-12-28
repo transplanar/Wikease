@@ -19,11 +19,12 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.new(wiki_params)
+    wiki_log = @wiki.title.truncate(30)
 
     respond_to do |format|
       if @wiki.save
-        format.html { redirect_to @wiki}
-        format.json { render :show, status: :created, location: @wiki }
+        format.html { redirect_to @wiki, notice: "Wiki \" #{wiki_log}\" was successfully created."  }
+        format.json { render :show, status: :created, location: @wiki}
       else
         format.html { render :new }
         format.json { render json: @wiki.errors, status: :unprocessable_entity }

@@ -5,17 +5,14 @@
     </tr>
   </thead>
 
-  <!-- REVIEW - highlight read/unread wikis? -->
+  <!-- REVIEW highlight read/unread wikis? -->
+  <!-- REVIEW implement collapsable previews? -->
+  <!-- TODO forms -->
   <tbody>
     <tr class="index-table-header-container">
       <td class="index-table-header"> Entry </td>
       <td class="index-table-header"> Author </td>
     </tr>
-    <% @wikis.each do |wiki| %>
-      <tr>
-        <td><%= link_to wiki.title.truncate(50), wiki_path(wiki) %></td>
-        <td> <%= link_to wiki.user.email, user_path(wiki.user) %></td>
-      </tr>
-    <% end %>
+    <%= render 'wikis/wikis' %>
   </tbody>
 </table>
