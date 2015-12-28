@@ -2,35 +2,31 @@ class CollaborationsController < ApplicationController
   before_action :set_collaboration, only: [:destroy]
   before_action :set_wiki
 
-  # GET /collaborations
-  # GET /collaborations.json
   def index
-    #@collaborations = Collaboration.all
+  #   #@collaborations = Collaboration.all
     @users = User.all
   end
 
   # GET /collaborations/1
   # GET /collaborations/1.json
-  def show
-  end
+  # def show
+  # end
 
-  # GET /collaborations/new
   def new
     @collaboration = Collaboration.new
   end
 
-  # GET /collaborations/1/edit
-  def edit
-  end
-
-  # POST /collaborations
-  # POST /collaborations.json
   def create
     @collaboration = @wiki.collaborations.new(user_id: params[:user_id])
+    # user = User.find(params[:user_id])
 
     respond_to do |format|
       if @collaboration.save
+        # REVIEW why aren't confirmation messages working right here?
+        # REVIEW why is the confirmation message displaying twice?
         format.html { redirect_to wiki_collaborations_path(@wiki), notice: 'Collaboration was successfully created.' }
+        # format.html { redirect_to wiki_collaborations_path(@wiki), flash[:notice] = "Collaboration was successfully created." }
+        # format.html { redirect_to wiki_collaborations_path(@wiki), flash[:notice] = "#{user.email.to_s} is now collaborating on #{@wiki.title}" }
         format.json { render :show, status: :created, location: @collaboration }
       else
         format.html { redirect_to wiki_collaborations_path(@wiki) }
@@ -39,22 +35,18 @@ class CollaborationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /collaborations/1
-  # PATCH/PUT /collaborations/1.json
-  def update
-    respond_to do |format|
-      if @collaboration.update(collaboration_params)
-        format.html { redirect_to @collaboration, notice: 'Collaboration was successfully updated.' }
-        format.json { render :show, status: :ok, location: @collaboration }
-      else
-        format.html { render :edit }
-        format.json { render json: @collaboration.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @collaboration.update(collaboration_params)
+  #       format.html { redirect_to @collaboration, notice: 'Collaboration was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @collaboration }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @collaboration.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  # DELETE /collaborations/1
-  # DELETE /collaborations/1.json
   def destroy
     @collaboration.destroy
     respond_to do |format|

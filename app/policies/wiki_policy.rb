@@ -14,6 +14,10 @@ class WikiPolicy < ApplicationPolicy
     update?
   end
 
+  def destroy?
+    update?
+  end
+
   class Scope
    attr_reader :user, :scope
 

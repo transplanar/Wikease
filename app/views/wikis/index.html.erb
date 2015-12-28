@@ -1,10 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Wikis</h1>
-
-<!-- TODO move wikis back to table, use bootstrap table class -->
-<!-- TODO add collapsable wiki previews http://getbootstrap.com/javascript/#collapse-->
-<!-- <table>
+<table class="table">
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -12,30 +6,15 @@
   </thead>
 
   <tbody>
-    <%# @wikis.each do |wiki| %>
+    <tr class="index-table-header-container">
+      <td class="index-table-header"> Entry </td>
+      <td class="index-table-header"> Author </td>
+    </tr>
+    <% @wikis.each do |wiki| %>
       <tr>
-        <td><%# link_to wiki.title, wiki_path(wiki) %></td>
-        <td><%# link_to wiki.user.email, user_path(wiki.user) %></td>-->
-
-
-      <!-- </tr> -->
-    <!-- <%# end %> -->
-  <!-- </tbody> -->
-<!-- </table> -->
-
-<ul>
-
-<% @wikis.each do |wiki| %>
-  <!-- <div class="col-md-6"> -->
-    <li>
-      <%= link_to wiki.title.truncate(50), wiki_path(wiki) %>
-      <div class="pull-right">
-        <%= link_to wiki.user.email, user_path(wiki.user) %>
-      </div>
-    </li>
-  <!-- </div> -->
-<% end %>
-</ul>
-
-
-<br>
+        <td><%= link_to wiki.title.truncate(50), wiki_path(wiki) %></td>
+        <td> <%= link_to wiki.user.email, user_path(wiki.user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
