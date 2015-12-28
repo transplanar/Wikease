@@ -1,18 +1,21 @@
-<strong> All Users: </strong>
-<!-- TODO create partial for user index -->
-<!-- <%# @users.each do |user| %> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<!-- TODO adjust positioning of joined date-->
-<div class="pull-right"> <strong>Joined:</strong> </div>
-
-<% User.all.each do |user| %>
-  <div class="col-md-6">
-    <%= link_to user.email, user_path(user) %>
-
-    <div class="pull-right">
-      <%= user.created_at.strftime("%B %d, %Y") %>
-    </div>
-  </div>
-
-  <!-- TODO align "joined" to right side -->
-<% end %>
+<!-- REVIEW how can I remove the top border above users/joined? -->
+  <tbody>
+    <tr class="index-table-header-container">
+      <td class="index-table-header"> Users </td>
+      <td class="index-table-header"> Joined </td>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, user_path(user) %></td>
+        <td> <%= user.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -14,12 +14,53 @@
  *= require_self
  */
 
+// REVIEW overide/extend CSS classes?
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// TODO tweak mouse_over look
+.container{
+  // font: Verdana, sans-serif;
+  // font: Arial, sans-serif;
+  font-family: fantasy, sans-serif;
+}
+
+.nav{
+  margin-top: 0.5em;
+}
+
 #new_wiki_button{
   background-color: #83ff8c;
   margin-bottom: 1em;
-  border-radius: 15px;
+  border-radius: 10px;
+}
+
+#new_wiki_button a:hover{
+  background-color: #008040;
+  border-radius: 10px;
+  color: yellow;
+}
+
+.blue-pill,
+.blue-pill a:hover{
+  border-radius: 10px;
+}
+
+.blue-pill{
+  background-color: #e5fdff;
+}
+
+li.blue-pill a:hover {
+  background-color: #008d99
+}
+
+.index-table-header{
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.index-table-header-container{
+  padding-left: 10px;
+  text-indent: 2em;
+  border-top: none;
 }

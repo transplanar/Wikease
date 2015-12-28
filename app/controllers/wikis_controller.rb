@@ -1,31 +1,22 @@
 class WikisController < ApplicationController
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
-  # GET /wikis
-  # GET /wikis.json
   def index
-    # @wikis = Wiki.all
     @wikis = policy_scope(Wiki)
   end
 
-  # GET /wikis/1
-  # GET /wikis/1.json
   def show
     authorize @wiki
   end
 
 # TODO Feature - Allow you to attempt to create a wiki, suspend and prompt for signin, then complete request on sign-in
-  # GET /wikis/new
   def new
     @wiki = Wiki.new
   end
 
-  # GET /wikis/1/edit
   def edit
     authorize @wiki
   end
 
-  # POST /wikis
-  # POST /wikis.json
   def create
     @wiki = current_user.wikis.new(wiki_params)
 
@@ -40,26 +31,18 @@ class WikisController < ApplicationController
     end
   end
 
-  # PATCH/PUT /wikis/1
-  # PATCH/PUT /wikis/1.json
   def update
     authorize @wiki
-
-    # XXX does this work?
-    # @users << params[:collaborators]
-
-    # Parse collaborators
-    collaborators = User.where(params[:collaborators])
-    # collaborators = params[:collaborators] == 1)
-
-    flash[:notice] = "Collaborators = #{collaborators}"
-
-
-    # REVIEW Fix this to store new collaborators
-    collaborators.each do |user|
-      # Collaboration.create(wiki: @wiki, collaborator: user)
-      Collaboration.create(wiki: @wiki, user: user)
-    end
+    # collaborators = User.where(params[:collaborators])
+    #
+    # flash[:notice] = "Collaborators = #{collaborators}"
+    #
+    #
+    # # REVIEW Fix this to store new collaborators
+    # collaborators.each do |user|
+    #   # Collaboration.create(wiki: @wiki, collaborator: user)
+    #   Collaboration.create(wiki: @wiki, user: user)
+    # end
 
 
     respond_to do |format|
@@ -78,9 +61,10 @@ class WikisController < ApplicationController
   # DELETE /wikis/1.json
   def destroy
     authorize @wiki
+    wiki_log = @wiki.title.truncate(30)
     @wiki.destroy
     respond_to do |format|
-      format.html { redirect_to wikis_url, notice: 'Wiki was successfully destroyed.' }
+      format.html { redirect_to wikis_url, notice: "Wiki \" #{wiki_log}\" was successfully destroyed." }
       format.json { head :no_content }
     end
   end

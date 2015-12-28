@@ -1,31 +1,32 @@
-<p id="notice"><%= notice %></p>
+<!-- TODO style wiki show -->
+<% if(@wiki.user == current_user)  %>
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_wiki_path(@wiki), class: "btn btn-info" %> <%= link_to 'Delete', wiki_path(@wiki), method: :delete, class: "btn btn-danger " %>
+  </div>
+<% end %>
+
+
+<h2> <%= @wiki.title %> </h2>
 
 <p>
-  <strong>Title:</strong>
-  <%= @wiki.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
   <%= markdown(@wiki.body) %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <!-- TODO change to show username -->
-  <%= @wiki.user.email %>
+  <strong>Author:</strong> <%= @wiki.user.email %>
 </p>
 
-<strong>collaborators:</strong>
-<p>
-  <% if @wiki.users.any? %>
-    <% @wiki.users.each do |u| %>
-      <p> <%= u.email %> </p>
+<% if @wiki.collaborations.any? %>
+  <strong>Contributors</strong>
+  <p>
+    <% if @wiki.users.any? %>
+      <% @wiki.users.each do |u| %>
+        <p> <%= u.email %> </p>
+      <% end %>
     <% end %>
-  <% end %>
-</p>
+  </p>
+<% end %>
 
-<%= link_to "Manage collaborators", wiki_collaborations_path(@wiki), class: "btn btn-success" %>
-
-<%= link_to 'Edit', edit_wiki_path(@wiki) %> |
-<%= link_to 'Back', wikis_path %>
+<% if (current_user.role == 'premium' && @wiki.user == current_user) || current_user.role == 'admin' %>
+  <%= link_to "Manage collaborators", wiki_collaborations_path(@wiki), class: "btn btn-success" %>
+<% end %>
