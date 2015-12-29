@@ -1,4 +1,5 @@
 <!-- TODO style wiki show -->
+<!-- TODO add admin control -->
 <% if(@wiki.user == current_user)  %>
   <div class="pull-right">
     <%= link_to 'Edit', edit_wiki_path(@wiki), class: "btn btn-info" %> <%= link_to 'Delete', wiki_path(@wiki), method: :delete, class: "btn btn-danger " %>
@@ -28,5 +29,5 @@
 <% end %>
 
 <% if (current_user.role == 'premium' && @wiki.user == current_user) || current_user.role == 'admin' %>
-  <%= link_to "Manage collaborators", wiki_collaborations_path(@wiki), class: "btn btn-success" %>
+  <%= link_to "Collaborations", wiki_collaborations_path(@wiki), class: "btn btn-success" %>
 <% end %>
