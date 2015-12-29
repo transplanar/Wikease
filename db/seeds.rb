@@ -16,7 +16,7 @@ user.update_attribute(:confirmed_at, Time.now)
 end
 
 User.all.each do |user|
-  2.times do
+  6.times do
     user.wikis.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph)
     user.save!
   end

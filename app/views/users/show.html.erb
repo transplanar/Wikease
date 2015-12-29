@@ -1,25 +1,46 @@
-<!-- TODO add username -->
-<!-- <h2><%# @user.email %></h2> <small> <%# @user.role  %></small> -->
-<h2><%= @user.email %></h2> <small> <%= @user.role  %></small>
+<div class="row">
+  <h2 class="user-show-heading"><%= @user.email %></h2>
+  <div class="user-show-heading btn-xs btn-primary" id="role-button"><%= @user.role %> user</div>
+  <h3> You have <%= @user.wikis.count %> Entries</h3>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.wikis.each do |wiki| %>
+    <tr>
+      <td>
+        <div class="option-buttons"> <%= link_to wiki.title.truncate(60), wiki_path(wiki) %> </div>
+
+        <div class="option-buttons pull-right">
+          <!-- REVIEW why isn't this working? -->
+          <% if wiki.user == current_user || current_user.role == 'admin' %>
+            <!-- <div class="pull-right" id="user-show-tiny-buttons"> -->
+            <div id="user-show-tiny-buttons">
+              <%= link_to 'Edit', edit_wiki_path(wiki), class: "btn-sm btn-info" %> <%= link_to 'Delete', wiki_path(wiki), method: :delete, class: "btn-sm btn-danger " %>
+              <!-- REVIEW how to get this to appear below edit/delete with proper margin -->
+              <% if current_user.role == 'premium' %>
+                <%= link_to "Collaborations", wiki_collaborations_path(wiki), class: "btn-sm btn-success"%>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= wiki.body.truncate(150) %>
+        </div>
+      </td>
 
 
+      <!-- <td><%# wiki.body.truncate(130) %></td> -->
+    </tr>
+    <!-- <tr></tr> -->
 
-<row>
-  <div class="col-md-6">
-    <h3> <%= @user.wikis.count %> Wikis</h3>
-    <!-- TODO create partial for user wiki index-->
-    <!-- <div class="col-md-6"> -->
-
-      <ul>
-        <% @user.wikis.each do |wiki| %>
-
-          <li> <%= link_to wiki.title, wiki_path(wiki) %> </li>
-      <% end %>
-    </ul>
-
-          <!-- TODO restore hide of private wikis -->
-          <!-- <%# if !wiki.private || current_user.admin? || wiki.user == current_user %> -->
-          <!-- <%# end %> -->
-    <!-- </div> -->
-  </div>
-</row>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,43 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// #user-id-show{
+//   display: inline-block;
+// }
+//
+// #user-role-show{
+//   display: inline-block;
+// }
+
+.user-show-heading{
+  display: inline-block;
+  // margin-bottom: 0.5em;
+  // padding-bottom: 0.5em;
+}
+
+.option-buttons{
+  // position:
+  display: inline-block;
+}
+
+#role-button{
+  position: relative;
+  bottom: 4px;
+  margin-left: 10px;
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+#collab-tiny{
+  // margin-top: 20px;
+}
+
+
+#user-show-tiny-buttons{
+  // margin-bottom: 1px;
+  position: relative;
+  bottom: 2px;
+}
