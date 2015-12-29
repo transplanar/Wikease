@@ -11,6 +11,7 @@
       <td class="index-table-header"> Entry </td>
       <td class="index-table-header"> Author </td>
     </tr>
+    <!-- TODO add sorting types (ajax), to show by newest -->
     <% @wikis.each do |wiki| %>
       <tr>
         <td><%= link_to wiki.title.truncate(50), wiki_path(wiki) %></td>
