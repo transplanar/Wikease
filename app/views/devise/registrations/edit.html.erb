@@ -1,11 +1,16 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
+<div class="center-box">
+
+<h2>Edit User Details</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <!-- REVIEW remove this b/c already have flash notice/alerts? -->
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :email %>
+      <!-- REVIEW how do I change the size of input fields without making the text inside larger? -->
+      <%= f.email_field :email, autofocus: true%>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,28 +18,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off"%>
+    <!-- TODO add JS hover to display below message instead. -->
+    <div><i>(leave this blank to keep current password)</i></div>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %>
     <%= f.password_field :current_password, autocomplete: "off" %>
+    <div><i>(password changes require you to confirm your current password)</i></div>
   </div>
 
-  <div class="actions">
+  <div class="actions padded-button">
     <%= f.submit "Update Info", class: "btn btn-info" %>
   </div>
 <% end %>
 
-</br>
-
-
+<h2>Edit Account Settings</h2>
 <% if current_user.role == 'member' %>
   <%= link_to "Upgrade to Premium", new_charge_path(), class: "btn btn-success" %>
 <% elsif current_user.role == 'premium' %>
@@ -47,6 +53,8 @@
 
 
 <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+
+</div>
 
 <!-- <h3>Cancel my account</h3> -->
 
