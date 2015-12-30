@@ -1,15 +1,9 @@
-
 # Set up admin user
-user = User.create!(email: "admin@example.com", password: "password")
-# user.role.admin!
-user.update_attribute(:confirmed_at, Time.now)
-user.update_attribute(:role, 'admin')
+user = User.create!(email: "admin@example.com", password: "password", confirmed_at: Time.now, role: 'admin')
 
-user = User.create!(email: "member@example.com", password: "password")
-user.update_attribute(:confirmed_at, Time.now)
+user = User.create!(email: "member@example.com", password: "password", confirmed_at: Time.now)
 
-user = User.create!(email: "member2@example.com", password: "password")
-user.update_attribute(:confirmed_at, Time.now)
+user = User.create!(email: "member2@example.com", password: "password", confirmed_at: Time.now)
 
 20.times do
   # TODO (LOW) randomize create times?
