@@ -1,5 +1,4 @@
 <%= form_for(@wiki) do |f| %>
-  <!-- REVIEW remove/replace this with flash alerts -->
   <% if @wiki.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wiki.errors.count, "error") %> prohibited this wiki from being saved:</h2>
@@ -21,14 +20,10 @@
     <%= f.text_area :body, rows: 20, style: 'width:100%;', placeholder: 'Share your wisdom here' %>
   </div>
 
-  <!-- REVIEW how can i make the 'create wiki' and 'private' buttons display next to eachother? -->
-  <!-- ANSWER -> check styling for user settings -->
   <div class="actions">
-    <!-- REVIEW how to apply a bootstrap css class on to this submit button? -->
     <%= f.submit%>
   </div>
 
-  <!-- REVIEW how can I get the checkbox to align better? -->
   <% if current_user.role == 'premium' || current_user.role == 'admin' %>
     <div class="field", style="display:inline-block;">
       <%= f.label :private %> <%= f.check_box :private %>

@@ -18,12 +18,9 @@
         <div class="option-buttons"> <%= link_to wiki.title.truncate(60), wiki_path(wiki) %> </div>
 
         <div class="option-buttons pull-right">
-          <!-- REVIEW why isn't this working? -->
           <% if wiki.user == current_user || current_user.role == 'admin' %>
-            <!-- <div class="pull-right" id="user-show-tiny-buttons"> -->
             <div id="user-show-tiny-buttons">
               <%= link_to 'Edit', edit_wiki_path(wiki), class: "btn-sm btn-info" %> <%= link_to 'Delete', wiki_path(wiki), method: :delete, class: "btn-sm btn-danger " %>
-              <!-- REVIEW how to get this to appear below edit/delete with proper margin -->
               <% if current_user.role == 'premium' %>
                 <%= link_to "Collaborations", wiki_collaborations_path(wiki), class: "btn-sm btn-success"%>
               <% end %>
@@ -35,11 +32,7 @@
           <%= wiki.body.truncate(150) %>
         </div>
       </td>
-
-
-      <!-- <td><%# wiki.body.truncate(130) %></td> -->
     </tr>
-    <!-- <tr></tr> -->
 
     <% end %>
   </tbody>
