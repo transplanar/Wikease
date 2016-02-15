@@ -1,6 +1,5 @@
 # NOTE Could use "rails g pundit:policy Wiki" instead1
 class WikiPolicy < ApplicationPolicy
-  # TODO add case for admin and/or higher level roles
   def update?
     (not record.private) || (user == record.user) || (user.role == 'admin') || (record.users.include?(user))
   end
@@ -24,25 +23,24 @@ class WikiPolicy < ApplicationPolicy
    def resolve
      wikis = []
      if user.role == 'admin'
-       wikis = scope.all # if the user is an admin, show them all the wikis
+       wikis = scope.all
      elsif user.role == 'premium'
        all_wikis = scope.all
        all_wikis.each do |wiki|
-        #  if wiki.public? || wiki.user == user || wiki.users.include?(user)
          if !wiki.private || wiki.user == user || wiki.users.include?(user)
-           wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
+           wikis << wiki
          end
        end
-     else # this is the lowly standard user
+     else
        all_wikis = scope.all
        wikis = []
        all_wikis.each do |wiki|
          if !wiki.private || wiki.users.include?(user)
-           wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
+           wikis << wiki
          end
        end
      end
-     wikis # return the wikis array we've built up
+     wikis
    end
  end
 end

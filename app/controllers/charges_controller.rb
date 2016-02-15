@@ -1,4 +1,3 @@
-# include Amount
 require 'amount'
 
 class ChargesController < ApplicationController
@@ -16,7 +15,6 @@ class ChargesController < ApplicationController
       card: params[:stripeToken]
     )
 
-    # TODO create Amount class
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: Amount.default,
