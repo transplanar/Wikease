@@ -7,13 +7,11 @@ RSpec.describe CollaborationsController, type: :controller do
   let(:my_wiki){Wiki.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph)}
 
   let(:valid_attributes) {
-    {user_id: my_user.id
-    }
+    {user_id: my_user.id }
   }
 
   let(:invalid_attributes) {
-    {user_id: nil
-    }
+    {user_id: nil }
   }
 
   before :each do
@@ -23,7 +21,7 @@ RSpec.describe CollaborationsController, type: :controller do
   end
 
   describe "GET #index" do
-    it "assigns all collaborations as @collaborations" do
+    it "populates hash to display all users" do
       get :index, {wiki_id: my_wiki.id}
       expect(assigns(:users)).to include(my_user)
     end
@@ -38,7 +36,7 @@ RSpec.describe CollaborationsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Collaboration" do
+      it "creates a new Collaboration for my_wiki" do
         expect {
           post :create, {wiki_id: my_wiki.id, user_id: my_user.id}
       }.to change(my_wiki.collaborations, :count).by(1)

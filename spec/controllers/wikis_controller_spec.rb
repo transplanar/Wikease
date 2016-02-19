@@ -87,9 +87,7 @@ RSpec.describe WikisController, type: :controller do
       faker_paragraph = Faker::Lorem.paragraph
 
       let(:new_attributes) {
-        # skip("Add a hash of attributes valid for your model")
-        {title: "New Title",
-        body: faker_paragraph}
+        {title: "New Title", body: faker_paragraph}
       }
 
       it "updates the requested wiki" do
