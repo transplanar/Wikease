@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user){  User.create!(
-    email: Faker::Internet.email,
-    password: Faker::Internet.password)}
+  let(:my_user){User.create!(email: "test@example.com", password: "password", confirmed_at: Time.now)}
+  
+  before :each do
+    sign_in my_user
+  end
 
-  # REVIEW (mid) why don't these specs work?
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, {id: my_user.id}
       expect(response).to have_http_status(:success)
     end
   end
