@@ -1,4 +1,3 @@
-# NOTE Could use "rails g pundit:policy Wiki" instead1
 class WikiPolicy < ApplicationPolicy
   def update?
     (not record.private) || (user == record.user) || (user.role == 'admin') || (record.users.include?(user))

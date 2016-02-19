@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :collaborations, only: [:index, :create, :destroy]
   end
 
-  # resources :charges, only: [:new, :create, :edit]
   resources :charges, only: [:new, :create]
 
   root 'welcome#index'
