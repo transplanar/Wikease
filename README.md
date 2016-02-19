@@ -1,11 +1,12 @@
 # Wikease
-A wikipedia-style SaaS site
+A wiki site that allows users to author private and public wikis, as well as assign collaborators onto wikis they own.
 
 
-* Devise
-* Pundit
-* Stripe
-* Redcarpet markdown parsing
+##Key Features
+* Devise Authentication
+* Pundit Authorization
+* Stripe integration for upgrading users to premium users
+* Redcarpet for Markdown parsing in wiki entries
 
 
 [View on Heroku](https://wikease.herokuapp.com/)
