@@ -18,10 +18,10 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.new(wiki_params)
-    wiki_log = @wiki.title.truncate(30)
 
     respond_to do |format|
       if @wiki.save
+        wiki_log = @wiki.title.truncate(30)
         format.html { redirect_to @wiki, notice: "Wiki \" #{wiki_log}\" was successfully created."  }
         format.json { render :show, status: :created, location: @wiki}
       else
@@ -47,9 +47,9 @@ class WikisController < ApplicationController
 
   def destroy
     authorize @wiki
-    wiki_log = @wiki.title.truncate(30)
     @wiki.destroy
     respond_to do |format|
+      wiki_log = @wiki.title.truncate(30)
       format.html { redirect_to wikis_url, notice: "Wiki \" #{wiki_log}\" was successfully destroyed." }
       format.json { head :no_content }
     end
