@@ -5,7 +5,7 @@ A wiki site that allows users to author private and public wikis, as well as ass
 ##Key Features
 * Devise Authentication
 * Pundit Authorization
-* Stripe integration for upgrading users to premium users
+* Stripe integration for upgrading user accounts
 * Redcarpet for Markdown parsing in wiki entries
 
 
